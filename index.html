@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="Mobile.css">  
+    <title> Game </title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <h2> &#128511; Rock - Paper - Scissor Game 	&#128511;</h2>
+    </header>
+
+    <style> 
+
+        .my-ok{
+            background-color: aliceblue;
+        }
+
+        .my-cancel{
+            background-color: aqua;
+        }
+
+
+
+
+    </style>
+
+    <main>
+        <button id="Rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="Scissor">Scissor</button>
+
+        <script>
+
+        document.getElementById("Rock").addEventListener("click", handleClick);
+        document.getElementById("paper").addEventListener("click", handleClick);
+        document.getElementById("Scissor").addEventListener("click", handleClick);
+
+        function handleClick(event) {
+            const userMove = event.target.id;
+            const moves = ["Rock", "Paper", "Scissor"];
+            const computerMove = moves[Math.floor(Math.random() * 3)];
+
+            let result = "";
+
+            if (userMove === computerMove) {
+                result = "It's a Draw!";
+            } else if (
+                (userMove === "Rock" && computerMove === "Scissor") ||
+                (userMove === "Paper" && computerMove === "Rock") ||
+                (userMove === "Scissor" && computerMove === "Paper")
+            ) {
+                result = "You Win!";
+            } else {
+                result = "You Lose!";
+            }
+
+            Swal.fire({
+                title: result,
+                text: `You chose ${userMove}, computer chose ${computerMove}.`,
+                icon: result === "You Win!" ? "success" :
+                      result === "It's a Draw!" ? "info" : "error",
+                customClass: {
+                confirmButton: 'my-custom-button'
+                },
+                buttonsStyling: false
+            });
+
+        }
+    </script>
+    </main>
+
+    <footer> <h2>  	&#128516;  Thanks for Playing the Game 	&#128516; </h2> </footer>
+</body>
+</html>
